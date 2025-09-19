@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Endocrine System Roadmap</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            /* background-color: #fcf5f5; */
+            background: linear-gradient(135deg, #ffebee 0%, #e53935 100%);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        .logo h1 {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            background-color: #aa0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn i {
+            margin-right: 0.8rem;
+        }
+        h1 {
+            color: #b71c1c;
+            border-bottom: 2px solid #e53935;   
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .roadmap {
+            position: relative;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            /* add space for the vertical line */
+            padding-left: 40px;
+        }   
+
+        .roadmap::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            width: 4px;
+            height: calc(100% - 60px);
+            background: #e53935;
+            border-radius: 2px;
+            z-index: 0;
+        }
+        .topic {
+            position: relative;
+            margin: 30px 0;
+            cursor: pointer;
+            padding: 10px 10px 10px 30px;
+            border-radius: 5px;
+            background-color: #f8eaea;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .topic::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: -30px;
+        width: 30px;
+        height: 4px;
+        background: #e53935;
+        border-radius: 2px;
+        z-index: 1;
+    }
+    .topic:first-child {
+        margin-top: 0;
+    }
+    .topic:last-child {
+        margin-bottom: 0;
+    }
+        .topic:hover {
+            background-color: #f1d7d4;
+        }
+        .topic h2 {
+            color: #b71c1c;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topic h2::after {
+            content: "+";
+            font-size: 1.5em;
+        }
+        .topic.active h2::after {
+            content: "-";
+        }
+        .notes {
+            display: none;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 4px solid #e53935;
+        }
+        .topic.active .notes {
+            display: block;
+        }
+        .drug-name {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        .mechanism {
+            font-style: italic;
+            color: #27ae60;
+        }
+        .side-effects {
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .key-point {
+            background-color: #edd4d4;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .roadmap {
+                padding-left: 20px;
+            }
+            .roadmap::before {
+                left: 10px;
+                width: 2px;
+            }
+            .topic {
+                padding-left: 18px;
+            }
+            .topic::before {
+                left: -18px;
+                width: 18px;
+                height: 2px;
+            }
+            header .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            header .container > div:first-child {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logo {
+                justify-content: center;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>ToToZ Collection</h1>
+            </div>
+            
+            <div>
+                <button onclick="window.location.href='index.html'" class="btn" style="margin-right: 1rem;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <a href="index.html" class="btn">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </div>
+            
+        </div>
+    </header>
+    
+    <h1> Endocrine System Pathology Roadmap</h1>
+    
+    <div class="roadmap">
+        <div class="topic">
+            <h2>1. Neuroendocrine System</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>2. The Pituitary Gland</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>3. Hypopituitarism</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>4. Sheehan Syndrome </h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>5. Disorders of Growth Hormone</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>6. Cushing Syndrome</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>7. Thyroid Gland</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>8. Benign Thyroid Neoplasms</h2>
+            <div class="notes">
+                <p>
+                   <strong> Description</strong>
+                </p>
+                <ul>
+                    <li>These arise from follicular epithelium and are thus follicular adenoma.</li>
+                    <li>The tumors are solitary nodules.</li>
+                    <li>Grossly, they are demarcated from the adjacent normal thyroid and encapsulated as they are well circumscribed—an appearance of benign tumors.</li>
+                </ul>
+
+                <p>
+                   <strong> Morphology</strong>
+                </p>
+                <ul>
+                    <li>Are solitary, spherical, encapsulated lesions well demarcated from the surrounding thyroid parenchyma.</li>
+                    <li>These features are vital in making a distinction pali iyi na multinodular goiters, where the cells produce less compression of the adjacent thyroid parenchyma and lack a well-formed capsule.</li>
+                    <li>In freshly resected specimens, the adenoma bulges from the cut surface and compresses adjacent thyroid.</li>
+                    <li>Color ranges from gray-white to red-brown depending on the cellularity and its colloid content.</li>
+                </ul>
+
+                <p>
+                   <strong>Microscopically</strong> 
+                </p>
+                <ul>
+                    <li>Encapsulation and sharp demarcation.</li>
+                    <li>Its fetal type (microfollicular) is well encapsulated with compression of surrounding thyroid parenchyma and consists of small follicles lined by cuboidal epithelium and contains little or no colloid and separated by abundant loose stroma.</li>
+                    <li>Over time, the neoplastic cells acquire brightly eosinophilic granular cytoplasm (oxyphilic or Hurthle cell change) and their clinical presentation and behavior aren’t different from that of conventional adenoma.</li>
+                </ul>
+
+                <p>
+                   <strong> Clinical Features</strong>
+                </p>
+                <ul>
+                    <li>Many present as unilateral painless masses often discovered during routine physical examination.</li>
+                    <li>Large masses may produce local symptoms like difficulty in swallowing.</li>
+                    <li>Can be difficult to differentiate from dominant nodules of follicular hyperplasia or from the less common follicular carcinomas.</li>
+                    <li>Aba joba balisosa ukuti adenomas are not forerunners of cancer except in rare instances.</li>
+                    <li>Although a vast majority of adenomas are nonfunctional, a small portion (toxic adenomas) produce thyroid hormones independent of TSH stimulation and cause thyrotoxicosis. They represent another example of thyroid autonomy, analogous to toxic multinodular goiters.</li>
+                </ul>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio-1/Lets talk about (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>9. Thyrocarcinoma (Papillary Adenoma)</h2>
+            <div class="notes">
+                <p> <strong> Description</strong></p>
+                <ul>
+                    <li>Most common thyroid cancer, more frequent in women than men.</li>
+                    <li>Linked to prior radiation exposure to the head and neck area.</li>
+                    <li>Spreads mostly to nearby lymph nodes in the neck.</li>
+                    <li>Shows bimodal age distribution — common in people under 40, and again in those aged 60–70.</li>
+                    <li>Lymphatic spread is very common, which may explain why there are often multiple tumor sites within the thyroid.</li>
+                </ul>
+
+                <p> <strong> Clinical Feature</strong></p>
+                <ul>
+                    <li>Usually appears as a painless lump in the front of the neck.</li>
+                    <li>Sometimes first noticed as a swollen neck lymph node even when the thyroid tumor is too small to detect.</li>
+                </ul>
+
+                <p> <strong> Pathology</strong></p>
+                <ul>
+                    <li><strong>Gross appearance:</strong>
+                    <ul>
+                        <li><em>Small tumors (sclerosing/occult):</em> May look like tiny scars.</li>
+                        <li><em>Large tumors:</em> Often have unclear borders but may have partial capsules.</li>
+                        <li><em>Cysts:</em> Common; may contain solid areas or papillary projections.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Microscopic features:</strong>
+                    <ul>
+                        <li>Tumor cells are arranged in papillae (finger-like structures) on fibrovascular stalks.</li>
+                        <li>Cells show "ground glass" or "Orphan Annie eye" nuclei (clear nuclei).</li>
+                        <li>Psammoma bodies (calcified round structures) present in about 40% of cases.</li>
+                        <li>Also contains colloid-filled follicles and solid clusters of tumor cells.</li>
+                    </ul>
+                    </li>
+                </ul>
+
+                <p><strong>Prognosis</strong></p>
+                <ul>
+                    <li>Grows very slowly.</li>
+                    <li>Has an excellent 10-year survival rate of about 95%.</li>
+                    <li>Most common thyroid cancer overall.</li>
+                    <li>Often seen in young adults (20s to 40s).</li>
+                    <li>Strongly associated with previous exposure to radiation.</li>
+                </ul>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio-1/Next up, PAPILL.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>10. Thyrocarcinoma (Follicular Carcinoma)</h2>
+            <div class="notes">
+                <p><strong>Description</strong></p>
+                 <ul>
+                    <li>Accounts for about 10% of all thyroid cancers.</li>
+                </p>
+                <p> <strong>Clinical Feature</strong> </p>
+                <ul>
+                    <li>Usually occurs in adults, more commonly in females.</li>
+                    <li>Presents as a thyroid nodule (a lump in the thyroid).</li>
+                    <li>Frequently invades blood vessels, leading to spread (metastasis) to brain, bones, or lungs.</li>
+                    <li>Sometimes, the distant metastasis is the first sign of the disease, before the thyroid tumor is even discovered.</li>
+                </ul>
+
+                <p><strong> Pathology</strong></p>
+                <ul>
+                    <li><strong>Gross appearance:</strong> Some tumors are hard to distinguish by eye, while others are clearly visible.</li>
+                    <li><strong>Microscopic features:</strong>
+                    <ul>
+                        <li>Some tumors are nearly solid, with little to no follicle formation.</li>
+                        <li>Others resemble normal thyroid tissue with well-formed follicles, making diagnosis tricky.</li>
+                    </ul>
+                    </li>
+                </ul>
+
+                <p><strong> Prognosis</strong></p>
+                <ul>
+                    <li>Outcome depends on how much the tumor invades surrounding tissue and blood vessels.</li>
+                    <li>If invasion is minimal, it may look like a benign adenoma and shows only slight capsule or blood vessel invasion. These cases have a good 5-year survival rate of 85%.</li>
+                    <li>These tumors often absorb radioiodine (especially after TSH stimulation), which helps in both diagnosis and treatment.</li>
+                </ul>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>11. Thyrocarcinoma (Medullary Carcinoma)</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>12. Thyrocarcinoma (Anaplastic Carcinoma)</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>13. HYPOTHALAMUS-PITUITARYTHYROIDAXIS AND MECHANISMOFACTION</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic">
+            <h2>14. Congenital Anomalies of the Thyroid Gland</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Lisinopril, Enalapril, Ramipril</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit angiotensin-converting enzyme → reduce angiotensin II → vasodilation and reduced aldosterone secretion</p>
+                <p><strong>Benefits:</strong></p>
+                <ul>
+                    <li>Reduce afterload</li>
+                    <li>Decrease cardiac remodeling</li>
+                    <li>Improve survival in HFrEF</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Side Effects:</strong> Dry cough, hyperkalemia, angioedema
+                </div>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle the click events
+        document.querySelectorAll('.topic h2').forEach(header => {
+            header.addEventListener('click', function() {
+                const topic = this.parentElement;
+                topic.classList.toggle('active');
+                
+                // Close other open topics (optional)
+                document.querySelectorAll('.topic').forEach(otherTopic => {
+                    if (otherTopic !== topic && otherTopic.classList.contains('active')) {
+                        otherTopic.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

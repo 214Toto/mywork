@@ -1,0 +1,3022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToToZ Collection - Professional Medical Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2b7a78;
+            --secondary: #afc4c4;
+            --accent: #3aafa9;
+            --dark: #17252a;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #5f4242;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+        
+        .logo h1 {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 91, 150, 0.7);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #0097a7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .features {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .resources {
+            padding: 4rem 0;
+            background-color: var(--light);
+        }
+        
+        .resource-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) #eee;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #666;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .resource-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .resource-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .resource-card:hover .resource-img img {
+            transform: scale(1.05);
+        }
+        
+        .resource-info {
+            padding: 1.5rem;
+        }
+        
+        .resource-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .resource-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .resource-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .resource-meta i {
+            margin-right: 0.3rem;
+        }
+        
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 188, 212, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card .resource-img {
+            position: relative;
+        }
+        
+        .video-card .play-btn:hover {
+            background-color: rgba(0, 188, 212, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+        }
+        
+        .pdf-download {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 2px;
+            border: #005b96 solid 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pdf-download:hover {
+            color: var(--primary);
+        }
+        
+        .pdf-download i {
+            margin-right: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Highlight active feature card */
+        .feature-card.active {
+            background-color: var(--accent);
+            color: white;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .feature-card.active i,
+        .feature-card.active h3,
+        .feature-card.active p {
+            color: white;
+        }
+        
+        /* Search results styling */
+        .search-results-count {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .highlight {
+            background-color: yellow;
+            color: black;
+            padding: 0 2px;
+        }
+        
+        /* Search container styling */
+        .search-container {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 25px;
+            border: 2px solid #ddd;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-container input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 39, 0, 0.2);
+        }
+        
+        .search-container button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            background: var(--accent);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-container button:hover {
+            background: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            
+            .document-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .document-meta {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pdf-viewer-container {
+                height: 50vh;
+            }
+
+            /* Responsive header layout */
+            header .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            header .container > div:first-child {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logo {
+                justify-content: center;
+                margin-bottom: 0;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>ToToZ Collection</h1>
+            </div>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Courses !!</h2>
+            </div>
+            <div class="search-container">
+                <input type="text" id="topicSearch" placeholder="Search for topics across all courses...">
+                <button id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card active" id="feature-videos" data-tab="math" tabindex="0">
+                    <i class="fas fa-square-root-alt"></i> 
+                    <h3> Mathematics (MA-110) </h3>
+                    <p>High-quality video tutorials covering various medical specialties and procedures.</p>
+                </div>
+                <div class="feature-card active" id="feature-videos" data-tab="physics" tabindex="0">
+                    <i class="fas fa-atom"></i>
+                    <h3> Physics (PH-110) </h3>
+                    <p>High-quality video tutorials covering various medical specialties and procedures.</p>
+                </div>
+                <div class="feature-card active" id="feature-videos" data-tab="chemistry" tabindex="0">
+                    <i class="fas fa-flask"></i>
+                    <h3> Chemistry (CH-110) </h3>
+                    <p>High-quality video tutorials covering various medical specialties and procedures.</p>
+                </div>
+                <div class="feature-card active" id="feature-videos" data-tab="therapeutics" tabindex="0">
+                    <i class="fas fa-hospital"></i>
+                    <h3> Therapeutics (MBS-330) </h3>
+                    <p>High-quality video tutorials covering various medical specialties and procedures.</p>
+                </div>
+                <div class="feature-card" id="feature-audio" data-tab="biochem" tabindex="0">
+                    <i class="fas fa-dna"></i>
+                    <h3> Biochemistry (MBS-330)</h3>
+                    <p>Downloadable audio content perfect for learning on the go during your commute.</p>
+                </div>
+
+                <div class="feature-card" id="feature-pdfs" data-tab="lab-science" tabindex="0">
+                    <i class="fas fa-vials"></i>
+                    <h3> Laboratory Science ( MBS-340 ) </h3>
+                    <p>Comprehensive study materials, research papers, and clinical guidelines.</p>
+                </div>
+
+                <div class="feature-card" id="feature-cases" data-tab="pathology" tabindex="0">
+                    <i class="fas fa-question-circle"></i>
+                    <h3> Pathology (MBS 320 )</h3>
+                    <p>Interactive clinical case discussions with expert analysis.</p>
+                </div>
+
+                <div class="feature-card" id="feature-quizzes" data-tab="physiology" tabindex="0">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3>Physiology (MBS 310 )</h3>
+                    <p>Test your knowledge with topic-based quizzes and instant feedback.</p>
+                </div>
+
+                <div class="feature-card" id="feature-soc-med" data-tab="soc-med" tabindex="0">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3> Society and Medicine </h3>
+                    <p>Test your knowledge with topic-based quizzes and instant feedback.</p>
+                </div>
+
+                <div class="feature-card" id="feature-webinars" data-tab="clinical" tabindex="0">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3> Clinical Science (MCS-300 )</h3>
+                    <p>Live and recorded webinars from leading medical professionals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Topics</h2>
+            </div>
+            
+            <div id="searchResultsCount" class="search-results-count" style="display: none;"></div>
+            
+            <div class="resource-tabs">
+                <button class="tab-btn active" data-tab="math"> Mathematics (MA 110) </button>
+                <button class="tab-btn active" data-tab="physics"> Physics (PH 110) </button>
+                <button class="tab-btn active" data-tab="chemistry">Chemistry (CH 110)</button>
+                <button class="tab-btn active" data-tab="therapeutics">Therapeutics</button>
+                <button class="tab-btn" data-tab="biochem">Biochemistry</button>
+                <button class="tab-btn" data-tab="lab-science">Laboratory Science</button>
+                <button class="tab-btn" data-tab="pathology">Pathology</button>
+                <button class="tab-btn" data-tab="physiology">Physiology</button>
+                <button class="tab-btn" data-tab="soc-med">Society And Medicine</button>
+                <button class="tab-btn" data-tab="clinical">Clinical Science</button>
+            </div>
+            
+            
+            <div class="tab-content" id="physics">
+                <div class="resource-grid">
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/units.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Units and Measurement</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/units.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/vectors.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Vectors And Scalars </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/vectors.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/vectors-tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/kinematics.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Kinematics </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/kinematics.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/kinematics-tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/dynamics.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Dynamics</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/dynamics.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/dynamics.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/momentum.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Linear Momentum and Collisions.</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/units.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/energy.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Work, Energy, Power</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/units.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/circular.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Circular Motion & Gravitational Field</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/units.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/rotational.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Rotational Motion.</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/units.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-content" id="math">
+                <div class="resource-grid">
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-1.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> 2024 Test 1  </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/2024-test1.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-2.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> 2023 Test 1 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/2024-test1.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> 2022 Test 1 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/2024-test1.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-4.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> 2021 Test 1 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/2024-test1.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-5.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>2019 Test 1 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/2024-test1.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-6.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> 2017 Test 1 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/2024-test1.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-7.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Tutorial Sheet 1 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/MA-sheet-1.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-8.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Tutorial Sheet 2 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/MA-sheet-2.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-9.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Tutorial Sheet 3 </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/MA-sheet-3.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/math-10.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Standard Questions  </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/MA-sheet-standard-questions.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tab-content" id="chemistry">
+                <div class="resource-grid">
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/intro-to-chemistry.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Introduction To Chemistry </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/intro-to-ch.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/stoichiometry.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Stoichiometry </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/stoichiometry.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/akwas.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>  Solutions In Aqueous </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/aqueous.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/gasses.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Gasses</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/gasses.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/units-Tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/thermochemistry.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>THERMOCHEMISTRY</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/thermochemistry-papers.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/thermochemistry-tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/atomic-structure.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>ATOMIC STRUCTURE AND PERIODICITY</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/atomic-structure-papers.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/atomic-structure-tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/organic.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>ORGANIC CHEMISTRY</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="Non-qota/organic-papers.html" class="pdf-download">
+                                    <i class="fas fa-file-alt"></i> Past Papaer
+                                </a>
+                                <a href="Non-qota/organic-tutorials.html" class="pdf-download">
+                                    <i class="fas fa-book-open"></i> Tutorial Sheets
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="tab-content active" id="therapeutics">
+                <div class="resource-grid">
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/fertility.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Drugs affecting fertility and reproduction</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/infertility.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Drugs used in Infertility </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/tocolytic.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Tocolytics and oxytocic drugs</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/steroids.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Adrenal steroids and related drugs</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/diabetes.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti - diabetic drugs </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/thyroid.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Thyroid drugs</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/arthritis.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Rheumatoid arthritic drugs </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/gout.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Gout drugs</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="pdf.html" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/chemotherapy.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Principles of chemotherapy </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/cell-wall.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Cell wall & Protein synthesis inhibitors</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/folate.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Folate</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/quinolone.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Quinolone</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/TB.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Mycobacterial Drugs</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/fungal.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Fungal</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/anti-viral.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Viral</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 3 </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/ARV.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Anti-Retro Viral </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 3</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            
+            <div class="tab-content" id="biochem">
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/overview.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Introduction to or Overview of Metabolism</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/etc.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>ETC and Oxidative Phosphorylation</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/glycolysis.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Carbohydrate Metabolism Glycolysis</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/HMP.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>HMP shunt (Pentose Phosphate Pathway)</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/TCA.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>TCA Cycle</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/FRUCTOSE.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Galactose and Fructose metabolism</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Gluconeogenesis</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Blood Glucose Homeostasis</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/alcohol.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Alcohol Metabolism</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Uronic acid pathway</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Glycogen Metabolism & Glycogen Storage Diseases</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Fatty Acid Sythesis</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Beta Oxidation </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Lipoproteines</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>STEROID AND BILE METABOLISM</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> KETOGENESIS </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Urea Cycle </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/nucleotide.avif" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Nucleotide Metabolism </h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="tab-content" id="lab-science">
+                <div class="resource-grid">
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/male.jpeg" alt="Case Studies">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Labopratory Investigation of infectious diseases of the male Reproductive System  </h3>
+                            <p>Detailed analysis of challenging clinical cases with expert commentary.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-hospital"></i> Teaching Hospital Archives</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/male-1.jpeg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Laboratory diagnosis of non-infectious disorders/conditions of the male reproductive system</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/female-1.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Laboratory diagnosis of non-infectious diseases/conditions of the female reproductive system and the breast.</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/female-2.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Laboratory investigations for infectious diseases of the female reproductive system</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/infectious.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Principles of Hormonal Assay</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/infectious.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Laboratory Investigations for Infectious Diseases of the Skin</h3>
+                            <p>Updated evidence-based guidelines for common medical conditions.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> Term 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/home-slider (1).jpg" alt="Research Paper">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Laboratory Diagnosis of Non-Infectious Skin Conditions</h3>
+                            <p>Comprehensive review of groundbreaking immunological research.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-university"></i> Journal of Medical Research</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/synovial.png" alt="Case Studies">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Examination of the Synovial Fluid</h3>
+                            <p>Detailed analysis of challenging clinical cases with expert commentary.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-hospital"></i> Teaching Hospital Archives</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/biochem.jpg" alt="Case Studies">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Laboratory Diagnosis of Musculoskeletal System Diseases</h3>
+                            <p>Detailed analysis of challenging clinical cases with expert commentary.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-hospital"></i> Teaching Hospital Archives</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="pathology">
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div style="width: 100%;" class="resource-img">
+                            <img src="images/renal.png" alt="Case Studies">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Renal Pathology</h3>
+                            <p>Detailed analysis of challenging clinical cases with expert commentary.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="pathology/renal-pathology.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-hospital"></i> Mr. Machiko</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/skin.JPG" alt="Case Studies">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Skin Pathology </h3>
+                            <p>Detailed analysis of challenging clinical cases with expert commentary.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="skin-pathology-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-hospital"></i> Teaching Hospital Archives</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/synovial.png" alt="Case Studies">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Neuropathology</h3>
+                            <p>Detailed analysis of challenging clinical cases with expert commentary.</p>
+                            <a href="#" class="pdf-download">
+                                <i class="fas fa-video"></i> Download PDF (4.7MB)
+                            </a>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-hospital"></i> Teaching Hospital Archives</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="physiology">
+                <div class="resource-grid">
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/intro-to-neuro.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>INTRODUCTION TO THE NERVOUS SYSTEM</h3>
+                            <p>Understanding lung function and gas exchange.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Smith</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/sensory.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Sensory Receptors </h3>
+                            <p>Detailed analysis of heart function and circulation.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="Sensory-receptors.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Smith</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Renal Physiology</h3>
+                            <p>Kidney function and fluid balance mechanisms.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Smith</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="soc-med">
+                <div class="resource-grid">
+                    
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/intro-to-neuro.png" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3> Professional Code of Ethics  </h3>
+                            <p>Understanding lung function and gas exchange.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Smith</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/soc-med.webp" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>The Complete Guide to Communication Skills in Clinical Practice</h3>
+                            <p>This guide outlines structured protocols for effective communication in clinical practice, covering medical interviews, breaking bad news, discussing errors, cultural competence, and handling emotional or challenging conversations. It provides step-by-step frameworks like C-L-A-S-S, S-P-I-K-E-S, and B-A-L-A-N-C-E to enhance empathy, clarity, and professionalism with patients, families, and colleagues.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="guide-to-com-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Smith</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Renal Physiology</h3>
+                            <p>Kidney function and fluid balance mechanisms.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Smith</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="clinical">
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>EXAMINATION OF THE NERVOUS SYSTEM</h3>
+                            <p>The one with 62 slides.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Johnson</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>CLINICAL EXAMINATION OF THE NERVOUS SYSTEM</h3>
+                            <p> The one with 53 slides.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Johnson</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Examination of the nervous system 2</h3>
+                            <p>The one with 48 slides.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Johnson</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>THE NERVOUS SYSTEM</h3>
+                            <p>The one with 56 slides.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Johnson</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-img">
+                            <img src="images/Pharmacy3.jpg" alt="Clinical Guidelines">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Examination of Nervous System</h3>
+                            <p>The one with 160 slides.</p>
+                            <div class="buttonz">
+                                <a href="#" class="pdf-download">
+                                    <i class="fas fa-video"></i> Checkout Video
+                                </a>
+                                <a href="antibacterial-roadmap.html" class="pdf-download">
+                                    <i class="fas fa-map-signs"></i> RoadMap
+                                </a>
+                                <a href="quiz.html" class="pdf-download">
+                                    <i class="fas fa-question-circle"></i> Try The Quiz
+                                </a>
+                            </div>
+                            <div class="resource-meta">
+                                <span><i class="far fa-file-pdf"></i> CBU - SOM</span>
+                                <span><i class="fas fa-user-md"></i> By Dr. Johnson</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div id="noResults" class="no-results" style="display: none;">
+                No matching topics found. Try different search terms.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ToToZ Collection</h3>
+                    <p>Advancing medical education through innovative digital learning resources for healthcare professionals worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Video Library</a></li>
+                        <li><a href="#">Audio Resources</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Specialties</h3>
+                    <ul>
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Neurology</a></li>
+                        <li><a href="#">Surgery</a></li>
+                        <li><a href="#">Pediatrics</a></li>
+                        <li><a href="#">Radiology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Boston, MA</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@ToToZ Collection.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 ToToZ Collection. All Rights Reserved. | Designed for Healthcare Professionals</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabContents = Array.from(document.querySelectorAll('.tab-content'));
+            const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+            const featureCards = Array.from(document.querySelectorAll('.feature-card'));
+            const searchInput = document.getElementById('topicSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const searchResultsCount = document.getElementById('searchResultsCount');
+            const noResults = document.getElementById('noResults');
+            
+            // Highlight matching text in search results
+            function highlightText(element, query) {
+                const text = element.textContent;
+                const regex = new RegExp(query, 'gi');
+                return text.replace(regex, match => `<span class="highlight">${match}</span>`);
+            }
+            
+            // Search topics across all courses
+            function searchTopics() {
+                const query = searchInput.value.trim().toLowerCase();
+                let totalResults = 0;
+                
+                if (query === '') {
+                    // Reset to default view if search is empty
+                    searchResultsCount.style.display = 'none';
+                    noResults.style.display = 'none';
+                    
+                    // Show all tabs but only activate the default one
+                    tabContents.forEach(tab => {
+                        tab.style.display = tab.id === 'therapeutics' ? 'block' : 'none';
+                        tab.classList.remove('active');
+                        const cards = tab.querySelectorAll('.resource-card');
+                        cards.forEach(card => {
+                            card.style.display = '';
+                            // Remove any existing highlights
+                            const highlights = card.querySelectorAll('.highlight');
+                            highlights.forEach(hl => {
+                                const parent = hl.parentNode;
+                                parent.textContent = parent.textContent;
+                            });
+                        });
+                    });
+                    
+                    // Reset tab buttons
+                    tabBtns.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-tab') === 'therapeutics') {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Reset feature cards
+                    featureCards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.getAttribute('data-tab') === 'therapeutics') {
+                            card.classList.add('active');
+                        }
+                    });
+                    
+                    return;
+                }
+                
+                // Show all tabs for searching
+                tabContents.forEach(tab => {
+                    tab.style.display = 'block';
+                    tab.classList.add('active');
+                    
+                    const cards = tab.querySelectorAll('.resource-card');
+                    let tabResults = 0;
+                    
+                    cards.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        const title = card.querySelector('h3').textContent.toLowerCase();
+                        const description = card.querySelector('p').textContent.toLowerCase();
+                        
+                        if (text.includes(query) || query === "") {
+                            card.style.display = "";
+                            tabResults++;
+                            totalResults++;
+                            
+                            // Highlight matching text
+                            const titleElement = card.querySelector('h3');
+                            const descElement = card.querySelector('p');
+                            
+                            titleElement.innerHTML = highlightText(titleElement, query);
+                            descElement.innerHTML = highlightText(descElement, query);
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                });
+                
+                // Update search results count
+                if (totalResults > 0) {
+                    searchResultsCount.textContent = `Found ${totalResults} matching topics`;
+                    searchResultsCount.style.display = 'block';
+                    noResults.style.display = 'none';
+                } else {
+                    searchResultsCount.style.display = 'none';
+                    noResults.style.display = 'block';
+                }
+                
+                // Activate all tab buttons during search
+                tabBtns.forEach(btn => btn.classList.add('active'));
+            }
+            
+            // Event listeners
+            searchBtn.addEventListener('click', searchTopics);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchTopics();
+                }
+            });
+
+            // Utility to smoothly scroll to the topics section
+function scrollToTopics() {
+    const topicsSection = document.querySelector('.resources');
+    if (topicsSection) {
+        topicsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Search button and Enter key event
+searchBtn.addEventListener('click', function() {
+    searchTopics();
+    scrollToTopics();
+});
+searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        searchTopics();
+        scrollToTopics();
+    }
+});
+            
+            // Tab switching functionality
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        searchInput.value = '';
+        searchResultsCount.style.display = 'none';
+        noResults.style.display = 'none';
+
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        featureCards.forEach(card => {
+            card.classList.remove('active');
+            if (card.getAttribute('data-tab') === tabId) {
+                card.classList.add('active');
+            }
+        });
+
+        tabContents.forEach(tab => {
+            tab.style.display = tab.id === tabId ? 'block' : 'none';
+            tab.classList.remove('active');
+            if (tab.id === tabId) {
+                tab.classList.add('active');
+            }
+        });
+
+        scrollToTopics();
+    });
+});
+
+// Feature card click functionality
+featureCards.forEach(card => {
+    card.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        searchInput.value = '';
+        searchResultsCount.style.display = 'none';
+        noResults.style.display = 'none';
+
+        featureCards.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+
+        tabBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('active');
+            }
+        });
+
+        tabContents.forEach(tab => {
+            tab.style.display = tab.id === tabId ? 'block' : 'none';
+            tab.classList.remove('active');
+            if (tab.id === tabId) {
+                tab.classList.add('active');
+            }
+        });
+
+        scrollToTopics();
+    });
+});
+
+// Feature card click functionality
+featureCards.forEach(card => {
+    card.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        // Always clear search and show selected tab
+        searchInput.value = '';
+        searchResultsCount.style.display = 'none';
+        noResults.style.display = 'none';
+
+        // Update active feature card
+        featureCards.forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+
+        // Update active tab button
+        tabBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Show the selected tab content
+        tabContents.forEach(tab => {
+            tab.style.display = tab.id === tabId ? 'block' : 'none';
+            tab.classList.remove('active');
+            if (tab.id === tabId) {
+                tab.classList.add('active');
+            }
+        });
+    });
+});
+            
+            // Clear search when clicking on feature cards
+            // featureCards.forEach(card => {
+            //     card.addEventListener('click', function() {
+            //         searchInput.value = '';
+            //         searchTopics();
+            //     });
+            // });
+            
+            // // Clear search when clicking on tab buttons
+            // tabBtns.forEach(btn => {
+            //     btn.addEventListener('click', function() {
+            //         searchInput.value = '';
+            //         searchTopics();
+            //     });
+            // });
+            
+            // Initialize with default view
+            searchTopics();
+        });
+    </script>
+</body>
+</html>

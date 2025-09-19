@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToToZ Collection: Renal Pathology Roadmap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2b7a78;
+            --primary-dark: #17252a;
+            --primary-light: #3aafa9;
+            --secondary: #444c4c;
+            --text: #333;
+            --text-light: #666;
+            --white: #fff;
+            --highlight: #feffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #f5f7fa;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--primary-light);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 0;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-light);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .main {
+            padding: 3rem 0;
+        }
+        
+        .roadmap-container {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .roadmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .roadmap-title {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+        
+        .progress-container {
+            background-color: var(--secondary);
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: #4b8aa1;
+        }
+        
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .topic-card {
+            background-color: var(--highlight);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .topic-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .topic-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        h5 {
+            background: linear-gradient(90deg, #3aafa9 0%, #2b7a78 100%);
+            color: #fff;
+            padding: 0.7em 1.2em;
+            border-radius: 6px;
+            font-size: 1.25em;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 2px 8px rgba(43, 122, 120, 0.08);
+            letter-spacing: 0.5px;
+            margin-bottom: 1em;
+            display: inline-block;
+        }
+        
+        .topic-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .topic-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-small {
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+        }
+        
+        .audio-player {
+            width: 100%;
+            margin-top: 1rem;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 0.8rem;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+        }
+        
+        .audio-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .audio-info i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        .notes-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #799fad;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-light);
+        }
+        
+        .notes-section h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+        
+        .notes-content {
+            line-height: 1.7;
+        }
+        
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+        
+        .social-icons {
+            margin: 1rem 0;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .anim-btn {
+            width: max-content;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anim-btn__button {
+            padding: 16px 32px 13px;
+            background-color: rgba(0, 0, 0, 0);
+            border: 1px solid #534e4a;
+            color: #534e4a;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: color 300ms ease, transform 300ms ease;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .anim-btn__button:hover,
+        .anim-btn__button:focus {
+            color: #fff;
+        }
+
+        .anim-btn__button:hover + .anim-btn__overlay,
+        .anim-btn__button:focus + .anim-btn__overlay {
+            transform: translateY(calc(-100% + 2px));
+        }
+
+        .anim-btn__button:active {
+            transform: scale(0.8);
+        }
+
+        .anim-btn__button:active + .anim-btn__overlay {
+            transform: translateY(calc(-100% + 2px)) scale(0.8);
+        }
+
+        .anim-btn__button {
+    padding: 16px 32px 13px;
+    background-color: transparent; /* keep transparent */
+    border: 1px solid #534e4a;
+    color: #534e4a;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: color 300ms ease, transform 300ms ease;
+    cursor: pointer;
+    outline: none;
+    position: relative;   /* <-- Add this */
+    z-index: 1;           /* <-- Add this */
+}
+
+.anim-btn__overlay {
+    background-color: #534e4a;
+    height: calc(100% + 2px);
+    width: 100%;
+    position: absolute;
+    bottom: calc(-100% - 2px);
+    left: 0;
+    z-index: 0;           /* <-- Change to 0 */
+    transition: transform 300ms ease;
+    transform: translateY(0);
+}
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .roadmap-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .progress-container {
+                margin-top: 1rem;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-book-medical"></i>
+                <h1>ToToZ Collection</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <div class="anim-btn">
+                            <a href="index.html" class="anim-btn__button">Home</a>
+                            <div class="anim-btn__overlay"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="anim-btn">
+                            <a href="index.html" class="anim-btn__button">Back</a>
+                            <div class="anim-btn__overlay"></div>
+                        </div>
+                    </li>
+                    <!-- other nav items -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h2>Renal Pathology Roadmap</h2>
+            <!-- <p>A comprehensive learning path for medical professionals to master renal pathology, featuring structured topics, detailed notes, and audio summaries.</p> -->
+            <!-- <a href="#" class="btn btn-outline">Explore All Roadmaps</a> -->
+        </div>
+    </section>
+    
+    <main class="main">
+        <div class="container">
+            <div class="roadmap-container">
+                <div class="roadmap-header">
+                    <!-- <h2 class="roadmap-title">Renal Pathology</h2> -->
+                    <div class="progress-container">
+                        <span>As Prepared by Mr. Machiko</span>
+                    </div>
+                </div>
+                
+                <div class="topic-grid">
+                    <!-- Topic Card 1 -->
+                    <div class="topic-card">
+                        <h3>  Effective Communication in Clinical Practice</h3>
+                        <p>Learn about the causes, diagnosis, and management of acute kidney injury.</p>
+                        <div class="topic-meta">
+                            <span>Estimated: 45 min</span>
+                            <div class="topic-actions">
+                                <button class="btn btn-primary btn-small view-notes" data-topic="aki">View Notes</button>
+                                <button class="btn btn-outline btn-small view-audio" data-audio="aki-audio">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic Card 2 -->
+                    <div class="topic-card">
+                        <h3>Chronic Kidney Disease (CKD)</h3>
+                        <p>Understand the progression, staging, and management of chronic kidney disease.</p>
+                        <div class="topic-meta">
+                            <span>Estimated: 1 hour</span>
+                            <div class="topic-actions">
+                                <button class="btn btn-primary btn-small view-notes" data-topic="ckd">View Notes</button>
+                                <button class="btn btn-outline btn-small view-audio" data-audio="ckd-audio">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic Card 3 -->
+                    <div class="topic-card">
+                        <h3>Glomerulonephritis</h3>
+                        <p>Explore the different types of glomerulonephritis and their pathological features.</p>
+                        <div class="topic-meta">
+                            <span>Estimated: 1.5 hours</span>
+                            <div class="topic-actions">
+                                <button class="btn btn-primary btn-small view-notes" data-topic="glomerulonephritis">View Notes</button>
+                                <button class="btn btn-outline btn-small view-audio" data-audio="gn-audio">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic Card 4 -->
+                    <div class="topic-card">
+                        <h3>Nephrotic Syndrome</h3>
+                        <p>Learn about the pathophysiology and clinical presentation of nephrotic syndrome.</p>
+                        <div class="topic-meta">
+                            <span>Estimated: 40 min</span>
+                            <div class="topic-actions">
+                                <button class="btn btn-primary btn-small view-notes" data-topic="nephrotic">View Notes</button>
+                                <button class="btn btn-outline btn-small view-audio" data-audio="ns-audio">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic Card 5 -->
+                    <div class="topic-card">
+                        <h3>Renal Tubular Acidosis</h3>
+                        <p>Understand the types and management of renal tubular acidosis disorders.</p>
+                        <div class="topic-meta">
+                            <span>Estimated: 35 min</span>
+                            <div class="topic-actions">
+                                <button class="btn btn-primary btn-small view-notes" data-topic="rta">View Notes</button>
+                                <button class="btn btn-outline btn-small view-audio" data-audio="rta-audio">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Topic Card 6 -->
+                    <div class="topic-card">
+                        <h3>Polycystic Kidney Disease</h3>
+                        <p>Study the genetic basis and clinical features of polycystic kidney disease.</p>
+                        <div class="topic-meta">
+                            <span>Estimated: 30 min</span>
+                            <div class="topic-actions">
+                                <button class="btn btn-primary btn-small view-notes" data-topic="pkd">View Notes</button>
+                                <button class="btn btn-outline btn-small view-audio" data-audio="pkd-audio">Play Audio</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal for Notes -->
+    <div class="modal" id="notesModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h3 id="modalTopicTitle">Acute Kidney Injury (AKI)</h3>
+            </div>
+            <div class="notes-section">
+                <h4>Detailed Notes</h4>
+                <div class="notes-content" id="topicNotes">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+            </div>
+            <div class="audio-player">
+                <div class="audio-info">
+                    <i class="fas fa-headphones"></i>
+                    <span>Audio Summary (5:32)</span>
+                </div>
+                <audio controls id="modalAudioPlayer">
+                    <source src="#" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <i class="fas fa-book-medical"></i>
+                <h1>ToToZ Collection</h1>
+            </div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Roadmaps</a>
+                <a href="#">Resources</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2023 ToToZ Collection. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Sample notes data (in a real app, this would come from a database)
+        const notesData = {
+            'aki': {
+                title: 'Acute Kidney Injury (AKI)',
+                notes: `
+                <h5>Effective Communication in Clinical Practice</h5>
+                    <p>
+                        Effective communication in clinical practice involves clear, concise, and compassionate interactions that foster trust and ensure patients feel heard and understood, ultimately leading to better patient outcomes and satisfaction.
+                    </p>
+                    <h5>Fundamentals of effective communication in Clinical Practice:</h5>
+                    <ol>
+                        <li><strong>Active Listening:</strong>
+                            <ul>
+                                <li>Pay close attention: Focus on what the patient is saying, both verbally and nonverbally.</li>
+                                <li>Ask clarifying questions: Ensure you understand the patient's concerns and needs.</li>
+                                <li>Provide feedback: Summarize and reflect back what you've heard to confirm understanding.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Clear and Concise Language:</strong>
+                            <ul>
+                                <li>Use plain language: Avoid jargon or technical terms that patients may not understand.</li>
+                                <li>Be direct and to the point: Ensure information is easy to grasp and retain.</li>
+                                <li>Repeat important information: Use the "teach-back" method to confirm understanding.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Empathy and Compassion:</strong>
+                            <ul>
+                                <li>Show genuine concern: Acknowledge the patient's feelings and experiences.</li>
+                                <li>Be patient and understanding: Allow the patient time to express themselves and ask questions.</li>
+                                <li>Build rapport: Establish a trusting relationship based on mutual respect.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Nonverbal Communication:</strong>
+                            <ul>
+                                <li>Maintain eye contact: Shows attentiveness and engagement.</li>
+                                <li>Use open body language: Facilitates a comfortable and open interaction.</li>
+                                <li>Be mindful of your tone of voice: A calm and reassuring tone can ease patient anxiety.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cultural Competence:</strong>
+                            <ul>
+                                <li>Be aware of cultural differences: Recognize that patients may have different communication styles and beliefs.</li>
+                                <li>Adapt your communication approach: Tailor your language and interactions to the patient's cultural background.</li>
+                                <li>Use interpreters when necessary: Ensure effective communication with patients who have language barriers.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Documentation:</strong>
+                            <ul>
+                                <li>Record important information: Document patient interactions, concerns, and treatment plans accurately.</li>
+                                <li>Ensure clear and organized records: Facilitates continuity of care and reduces errors.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Collaboration and Teamwork:</strong>
+                            <ul>
+                                <li>Communicate effectively with colleagues: Share information and coordinate care plans.</li>
+                                <li>Encourage open communication: Create a culture where everyone feels comfortable sharing their thoughts and concerns.</li>
+                                <li>Utilize mobile collaboration tools: Streamline communication and improve efficiency.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                `,
+                audio: '../audio/Alright.mp3'
+            },
+            'ckd': {
+                title: 'Chronic Kidney Disease (CKD)',
+                notes: `
+                    <h5>Definition</h5>
+                    <p>Chronic Kidney Disease (CKD) is a progressive loss of kidney function over months or years. It's defined by the presence of kidney damage or decreased kidney function (GFR <60 mL/min/1.73 m²) for three months or more.</p>
+                    
+                    <h5>Staging</h5>
+                    <p>CKD is classified into 5 stages based on GFR:</p>
+                    <ul>
+                        <li><strong>Stage 1:</strong> GFR ≥90 with kidney damage</li>
+                        <li><strong>Stage 2:</strong> GFR 60-89 with kidney damage</li>
+                        <li><strong>Stage 3a:</strong> GFR 45-59</li>
+                        <li><strong>Stage 3b:</strong> GFR 30-44</li>
+                        <li><strong>Stage 4:</strong> GFR 15-29</li>
+                        <li><strong>Stage 5:</strong> GFR <15 (kidney failure)</li>
+                    </ul>
+                    
+                    <h5>Complications</h5>
+                    <p>Complications of CKD include:</p>
+                    <ul>
+                        <li>Hypertension</li>
+                        <li>Anemia</li>
+                        <li>Mineral and bone disorders</li>
+                        <li>Cardiovascular disease</li>
+                        <li>Electrolyte imbalances</li>
+                        <li>Uremic syndrome</li>
+                    </ul>
+                    
+                    <h5>Management</h5>
+                    <p>Management focuses on slowing progression and treating complications:</p>
+                    <ul>
+                        <li>Blood pressure control (target <130/80 mmHg)</li>
+                        <li>Glycemic control in diabetics</li>
+                        <li>Dietary modifications (protein, sodium, potassium restriction)</li>
+                        <li>Treatment of anemia with erythropoiesis-stimulating agents</li>
+                        <li>Management of mineral and bone disorders</li>
+                        <li>Preparation for renal replacement therapy in advanced stages</li>
+                    </ul>
+                `,
+                audio: 'https://example.com/audio/ckd.mp3'
+            },
+            'glomerulonephritis': {
+                title: 'Glomerulonephritis',
+                notes: `
+                    <h5>Definition</h5>
+                    <p>Glomerulonephritis refers to inflammation of the glomeruli, the filtering units of the kidney. It can be primary or secondary to systemic diseases.</p>
+                    
+                    <h5>Classification</h5>
+                    <p>Major types include:</p>
+                    <ul>
+                        <li><strong>Nephritic syndrome:</strong> Acute proliferative GN, IgA nephropathy, MPGN</li>
+                        <li><strong>Nephrotic syndrome:</strong> Minimal change disease, FSGS, Membranous nephropathy</li>
+                        <li><strong>Rapidly progressive GN:</strong> Crescentic GN (anti-GBM, ANCA-associated, immune complex)</li>
+                    </ul>
+                    
+                    <h5>Clinical Features</h5>
+                    <p>Presentation varies by type:</p>
+                    <ul>
+                        <li>Hematuria (microscopic or macroscopic)</li>
+                        <li>Proteinuria (nephrotic range >3.5 g/day or subnephrotic)</li>
+                        <li>Hypertension</li>
+                        <li>Edema</li>
+                        <li>Renal dysfunction</li>
+                    </ul>
+                    
+                    <h5>Diagnosis</h5>
+                    <p>Diagnostic approach includes:</p>
+                    <ul>
+                        <li>Urinalysis (RBCs, RBC casts, protein)</li>
+                        <li>Serum creatinine and GFR</li>
+                        <li>Serologic tests (ASO, complements, ANCA, anti-GBM, ANA)</li>
+                        <li>Renal biopsy for definitive diagnosis</li>
+                    </ul>
+                    
+                    <h5>Treatment</h5>
+                    <p>Treatment depends on the specific type:</p>
+                    <ul>
+                        <li>Supportive care (blood pressure control, diuretics)</li>
+                        <li>Immunosuppression (corticosteroids, cyclophosphamide, rituximab)</li>
+                        <li>Plasmapheresis for anti-GBM disease</li>
+                        <li>Treatment of underlying systemic disease</li>
+                    </ul>
+                `,
+                audio: 'https://example.com/audio/glomerulonephritis.mp3'
+            }
+        };
+        
+        // Modal functionality
+        const modal = document.getElementById('notesModal');
+        const modalTitle = document.getElementById('modalTopicTitle');
+        const modalNotes = document.getElementById('topicNotes');
+        const modalAudio = document.getElementById('modalAudioPlayer');
+        const closeModal = document.querySelector('.close-modal');
+        
+        // View Notes buttons
+        document.querySelectorAll('.view-notes').forEach(button => {
+            button.addEventListener('click', function() {
+                const topicId = this.getAttribute('data-topic');
+                const topicData = notesData[topicId];
+                
+                if (topicData) {
+                    modalTitle.textContent = topicData.title;
+                    modalNotes.innerHTML = topicData.notes;
+                    modalAudio.src = topicData.audio;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+        
+        // Audio buttons
+        document.querySelectorAll('.view-audio').forEach(button => {
+            button.addEventListener('click', function() {
+                const topicId = this.getAttribute('data-audio').replace('-audio', '');
+                const topicData = notesData[topicId];
+                if (topicData && topicData.audio) {
+                    // Open modal if not already open
+                    modalTitle.textContent = topicData.title;
+                    modalNotes.innerHTML = topicData.notes;
+                    modalAudio.src = topicData.audio;
+                    modal.style.display = 'flex';
+                    // Play audio
+                    modalAudio.play();
+                }
+            });
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            modalAudio.pause();
+        });
+        
+        // Close when clicking outside modal
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                modalAudio.pause();
+            }
+        });
+    </script>
+</body>
+</html>

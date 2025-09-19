@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physiology Quiz</title>
+    <style>
+        :root {
+            --primary-color: #005b96;
+            --secondary-color: #003d66;
+            --accent-color: #4CAF50;
+            --error-color: #f44336;
+            --light-bg: #f5f9fc;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        
+        .quiz-setup {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .quiz-container {
+            display: none;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .results-container {
+            display: none;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .option-group {
+            margin-bottom: 20px;
+        }
+        
+        .option-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .option-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .option-btn {
+            display: inline-block;
+            background-color: #e1e5eb;
+            color: #333;
+            padding: 10px 15px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option-btn:hover {
+            background-color: #d0d5dd;
+        }
+        
+        .option-btn.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .start-btn {
+            display: block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            margin: 30px auto 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .start-btn:hover {
+            background-color: #3e8e41;
+        }
+        
+        .timer {
+            text-align: right;
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .timer.warning {
+            color: orange;
+        }
+        
+        .timer.danger {
+            color: var(--error-color);
+            animation: pulse 0.5s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            from { opacity: 1; }
+            to { opacity: 0.5; }
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .answer-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background-color: #f8fafc;
+            color: #333;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .answer-btn:hover {
+            background-color: #edf4fb;
+            border-color: var(--primary-color);
+        }
+        
+        .answer-btn.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .answer-btn.correct {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .answer-btn.incorrect {
+            background-color: var(--error-color);
+            color: white;
+            border-color: var(--error-color);
+        }
+        
+        .next-btn {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            margin: 20px 0 0 auto;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .next-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: #e1e5eb;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* Score animation */
+        .score-display {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-color) 0%, var(--accent-color) 0%, #e1e5eb 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            animation: fillAnimation 1.5s ease-out forwards;
+        }
+        
+        @keyframes fillAnimation {
+            to {
+                background: conic-gradient(var(--accent-color) var(--percentage), #e1e5eb var(--percentage));
+            }
+        }
+        
+        .score-inner {
+            width: 160px;
+            height: 160px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: bold;
+        }
+        
+        .score-value {
+            font-size: 3em;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .score-label {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .review-section {
+            margin-top: 40px;
+        }
+        
+        .review-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 6px;
+            background-color: #f8fafc;
+            border-left: 4px solid #ddd;
+        }
+        
+        .review-item.correct {
+            border-left-color: var(--accent-color);
+        }
+        
+        .review-item.incorrect {
+            border-left-color: var(--error-color);
+        }
+        
+        .review-item.unanswered {
+            border-left-color: #ff9800;
+        }
+        
+        .review-question {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .user-answer {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #fff3e0;
+        }
+        
+        .user-answer.correct {
+            background-color: #e8f5e9;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .user-answer.incorrect {
+            background-color: #ffebee;
+            color: var(--error-color);
+        }
+        
+        .user-answer.unanswered {
+            background-color: #fff8e1;
+            color: #ff9800;
+        }
+        
+        .correct-answer {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #e8f5e9;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .explanation {
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .restart-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            margin-right: 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .restart-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background-color: #666;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #444;
+        }
+        
+        .quiz-instructions {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .quiz-instructions h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .quiz-instructions ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>Physiology Quiz</h1>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Quiz Setup Section -->
+        <div class="quiz-setup" id="quizSetup">
+            <h2>Quiz Settings</h2>
+            
+            <div class="quiz-instructions">
+                <h3>How This Quiz Works</h3>
+                <ul>
+                    <li>Select your preferred time per question (or unlimited time)</li>
+                    <li>Choose when you want to see correct answers (immediately or at the end)</li>
+                    <li>After completing the quiz, you'll see detailed explanations for all questions</li>
+                    <li>You can review all questions with your answers and the correct solutions</li>
+                </ul>
+            </div>
+            
+            <div class="option-group">
+                <div class="option-title">Time per question:</div>
+                <div class="option-description">Set how much time you have for each question. Unlimited time lets you take as long as you need.</div>
+                <button class="option-btn" data-time="30">30 seconds</button>
+                <button class="option-btn" data-time="45">45 seconds</button>
+                <button class="option-btn" data-time="60">60 seconds</button>
+                <button class="option-btn selected" data-time="0">Unlimited time</button>
+            </div>
+            
+            <div class="option-group">
+                <div class="option-title">Answer feedback:</div>
+                <div class="option-description">Choose whether to see correct answers immediately after each question or only at the end of the quiz.</div>
+                <button class="option-btn selected" data-feedback="immediate">Show answers immediately</button>
+                <button class="option-btn" data-feedback="end">Show all answers at the end</button>
+            </div>
+            
+            <button class="start-btn" id="startQuiz">Start Quiz</button>
+        </div>
+        
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="timer" id="timer">Time left: --</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            
+            <div class="question">
+                <div class="question-text" id="questionText">Question text goes here</div>
+                <div class="answers" id="answers">
+                    <!-- Answers will be inserted here by JavaScript -->
+                </div>
+            </div>
+            
+            <button class="next-btn" id="nextBtn">Next Question</button>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="results-container" id="resultsContainer">
+            <div class="score-display">
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-inner">
+                        <div class="score-value" id="scoreValue">0%</div>
+                        <div class="score-label">Your Score</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-summary">
+                <p>You answered <strong id="correctCount">0</strong> out of <strong id="totalQuestions">0</strong> questions correctly.</p>
+                <p id="performanceComment">Keep practicing to improve your knowledge!</p>
+            </div>
+            
+            <div class="button-group">
+                <button class="restart-btn" id="restartBtn">Restart Quiz</button>
+                <button class="back-btn" id="backBtn">Back to Quiz Portal</button>
+            </div>
+            
+            <div class="review-section" id="reviewSection">
+                <h3>Detailed Question Review</h3>
+                <p>Below you'll find each question with your answer, the correct answer, and an explanation to help you understand the concepts better.</p>
+                <!-- Review items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data - replace with your actual questions
+        const quizData = [
+    {
+        question: "A 28-year-old man presents with primary infertility. His semen analysis reveals azoospermia. Serum testosterone is normal, but FSH is elevated. Which structure is most likely impaired?",
+        answers: ["Leydig cells", "Sertoli cells", "Epididymis", "Vas deferens", "Seminal vesicles"],
+        correct: 1,
+        explanation: "Elevated FSH with normal testosterone suggests Sertoli cell dysfunction, as FSH acts on Sertoli cells to support spermatogenesis."
+    },
+    {
+        question: "A 19-year-old male athlete uses anabolic steroids. Over time, he develops testicular atrophy. Which of the following best explains this finding?",
+        answers: ["Increased GnRH secretion", "Enhanced FSH production", "Suppressed LH secretion", "Upregulation of androgen-binding protein", "Overactivation of Leydig cells"],
+        correct: 2,
+        explanation: "Exogenous steroids suppress LH (and FSH) via negative feedback, reducing endogenous testosterone production and testicular size."
+    },
+    {
+        question: "A 25-year-old man is diagnosed with a mutation in the androgen receptor gene. Which of the following outcomes is most likely in this individual?",
+        answers: ["Increased spermatogenesis", "Hyperresponsive Sertoli cells", "Elevated muscle mass", "Impaired feedback inhibition of LH", "Decreased GnRH secretion"],
+        correct: 3,
+        explanation: "Androgen receptor mutation leads to impaired androgen signaling, causing lack of negative feedback on LH."
+    },
+    {
+        question: "A 35-year-old man presents with erectile dysfunction and infertility. Hormonal profile shows low testosterone and high LH and FSH. What is the most likely diagnosis?",
+        answers: ["Kallmann syndrome", "Hypogonadotropic hypogonadism", "Primary testicular failure", "Androgen insensitivity syndrome", "Congenital adrenal hyperplasia"],
+        correct: 2,
+        explanation: "This is a classic presentation of primary testicular failure: low testosterone with elevated LH and FSH."
+    },
+    {
+        question: "A researcher studying spermatogenesis observes a cell with 23 chromosomes and a duplicate chromatid. What stage of development is this cell in?",
+        answers: ["Primary spermatocyte", "Secondary spermatocyte", "Spermatogonium", "Spermatid", "Mature spermatozoon"],
+        correct: 1,
+        explanation: "Secondary spermatocytes have 23 chromosomes with sister chromatids, following meiosis I."
+    },
+    {
+        question: "A 20-year-old male with a pituitary tumor is found to have low FSH and LH levels. Which of the following is most directly affected by reduced FSH?",
+        answers: ["Testosterone production", "Libido", "Spermatogenesis", "Pubic hair growth", "Penile erection"],
+        correct: 2,
+        explanation: "FSH primarily stimulates Sertoli cells, which support spermatogenesis."
+    },
+    {
+        question: "A 17-year-old boy presents with delayed puberty. His serum LH and testosterone levels are low. Which hormone is likely deficient?",
+        answers: ["Estradiol", "GnRH", "Inhibin B", "DHEA", "Cortisol"],
+        correct: 1,
+        explanation: "Low LH and testosterone suggest deficient GnRH secretion, likely due to hypothalamic dysfunction."
+    },
+    {
+        question: "A 30-year-old man is found to have high testosterone and low LH and FSH. What is the most likely explanation?",
+        answers: ["Pituitary adenoma", "Inhibin B deficiency", "Androgen-secreting tumor", "Sertoli cell dysfunction", "Congenital absence of the vas deferens"],
+        correct: 2,
+        explanation: "An androgen-secreting tumor causes high testosterone which suppresses LH and FSH via negative feedback."
+    },
+    {
+        question: "A man undergoing radiation therapy for testicular cancer becomes infertile. Which of the following is most susceptible to radiation damage?",
+        answers: ["Leydig cells", "Sertoli cells", "Spermatogonia", "Epididymis", "Seminal vesicle"],
+        correct: 2,
+        explanation: "Spermatogonia are highly mitotic and sensitive to radiation, leading to infertility."
+    },
+    {
+        question: "A 26-year-old man presents with gynecomastia. Laboratory tests show high estrogen and low testosterone. Which of the following enzymes may be overactive?",
+        answers: ["5?-reductase", "Aromatase", "17?-hydroxysteroid dehydrogenase", "21-hydroxylase", "11?-hydroxylase"],
+        correct: 1,
+        explanation: "Aromatase converts androgens to estrogens; its overactivity leads to gynecomastia."
+    },
+    {
+        question: "A scientist blocks the function of androgen-binding protein (ABP) in an animal model. Which of the following would most likely be impaired?",
+        answers: ["LH secretion", "Testosterone synthesis", "Inhibin secretion", "Maintenance of high intratesticular testosterone", "Development of epididymis"],
+        correct: 3,
+        explanation: "ABP binds testosterone in the seminiferous tubules to maintain high local concentration for spermatogenesis."
+    },
+    {
+        question: "A male fetus with a mutation in the gene for anti-M�llerian hormone (AMH) presents with ambiguous genitalia. What is the most likely consequence?",
+        answers: ["Regression of Wolffian ducts", "Persistence of M�llerian ducts", "Excess testosterone production", "Lack of testes development", "Early Leydig cell apoptosis"],
+        correct: 1,
+        explanation: "AMH is responsible for regression of M�llerian ducts; its absence leads to their persistence."
+    },
+    {
+        question: "A 45-year-old man presents with low libido and fatigue. His testosterone levels are low and prolactin is elevated. What is the likely mechanism of his symptoms?",
+        answers: ["Inhibition of Leydig cells by prolactin", "Suppression of GnRH by prolactin", "Destruction of Sertoli cells", "Increased SHBG production", "Enhanced FSH secretion"],
+        correct: 1,
+        explanation: "Hyperprolactinemia inhibits GnRH, reducing LH/FSH and hence testosterone production."
+    },
+    {
+        question: "A 32-year-old man is being evaluated for infertility. His FSH level is elevated, LH is normal, and testosterone is normal. Which hormone is most likely decreased?",
+        answers: ["Estradiol", "GnRH", "Inhibin B", "Testosterone", "Prolactin"],
+        correct: 2,
+        explanation: "High FSH with normal testosterone and LH suggests decreased inhibin B, which negatively regulates FSH."
+    },
+    {
+        question: "Which of the following occurs during the process of spermiogenesis?",
+        answers: ["Meiosis I", "Formation of primary spermatocytes", "Conversion of spermatids into spermatozoa", "DNA replication", "Mitosis of spermatogonia"],
+        correct: 2,
+        explanation: "Spermiogenesis is the transformation of spermatids into mature spermatozoa (sperm cells)."
+    },
+    {
+        question: "A newborn male is diagnosed with cryptorchidism. What is a potential long-term consequence if not corrected?",
+        answers: ["Elevated fertility", "Increased androgen secretion", "Increased risk of testicular cancer", "Hyperplasia of Sertoli cells", "Decreased Leydig cell function"],
+        correct: 2,
+        explanation: "Undescended testes (cryptorchidism) are at increased risk for malignancy if not corrected."
+    },
+    {
+        question: "Which of the following hormones has a primarily inhibitory effect on FSH secretion from the anterior pituitary?",
+        answers: ["Testosterone", "Inhibin B", "GnRH", "Prolactin", "Estradiol"],
+        correct: 1,
+        explanation: "Inhibin B, secreted by Sertoli cells, selectively inhibits FSH secretion."
+    },
+    {
+        question: "A 24-year-old man has been taking exogenous testosterone for bodybuilding. What change is most likely seen on testicular biopsy?",
+        answers: ["Hyperplasia of Sertoli cells", "Increased spermatogenesis", "Suppressed spermatogonia", "Increased LH receptor expression", "Hypertrophy of Leydig cells"],
+        correct: 2,
+        explanation: "Exogenous testosterone suppresses FSH and LH, leading to suppressed spermatogenesis and germ cell depletion."
+    },
+    {
+        question: "Which of the following structures contributes the most volume to the semen?",
+        answers: ["Seminal vesicles", "Prostate gland", "Testes", "Bulbourethral glands", "Epididymis"],
+        correct: 0,
+        explanation: "Seminal vesicles contribute about 60-70% of semen volume with fructose-rich fluid."
+    },
+    {
+        question: "A male patient lacks the SRY gene. What is the most likely developmental outcome?",
+        answers: ["Presence of testes", "Regression of M�llerian ducts", "Formation of ovaries", "Production of testosterone", "Wolffian duct differentiation"],
+        correct: 2,
+        explanation: "SRY gene triggers testis development. Without it, gonads develop into ovaries."
+    }
+];
+
+        
+        // DOM elements
+        const quizSetup = document.getElementById('quizSetup');
+        const quizContainer = document.getElementById('quizContainer');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const questionText = document.getElementById('questionText');
+        const answersContainer = document.getElementById('answers');
+        const nextBtn = document.getElementById('nextBtn');
+        const timerElement = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+        const startBtn = document.getElementById('startQuiz');
+        const scoreValue = document.getElementById('scoreValue');
+        const correctCount = document.getElementById('correctCount');
+        const totalQuestions = document.getElementById('totalQuestions');
+        const performanceComment = document.getElementById('performanceComment');
+        const reviewSection = document.getElementById('reviewSection');
+        const restartBtn = document.getElementById('restartBtn');
+        const backBtn = document.getElementById('backBtn');
+        const scoreCircle = document.getElementById('scoreCircle');
+        
+        // Quiz variables
+        let currentQuestion = 0;
+        let score = 0;
+        let timer;
+        let timePerQuestion = 0; // 0 means unlimited
+        let feedbackMode = 'immediate'; // 'immediate' or 'end'
+        let userAnswers = [];
+        let timeLeft = 0;
+        
+        // Initialize option buttons
+        const timeButtons = document.querySelectorAll('[data-time]');
+        const feedbackButtons = document.querySelectorAll('[data-feedback]');
+        
+        timeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                timeButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+            });
+        });
+        
+        feedbackButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                feedbackButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+            });
+        });
+        
+        // Start quiz
+        startBtn.addEventListener('click', () => {
+            timePerQuestion = parseInt(document.querySelector('[data-time].selected').dataset.time);
+            feedbackMode = document.querySelector('[data-feedback].selected').dataset.feedback;
+            
+            quizSetup.style.display = 'none';
+            quizContainer.style.display = 'block';
+            
+            loadQuestion();
+        });
+        
+        // Load a question
+        function loadQuestion() {
+            // Reset state
+            answersContainer.innerHTML = '';
+            nextBtn.style.display = 'none';
+            
+            // Update progress
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Set question text
+            questionText.textContent = `${currentQuestion + 1}. ${quizData[currentQuestion].question}`;
+            
+            // Create answer buttons
+            quizData[currentQuestion].answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.classList.add('answer-btn');
+                button.textContent = answer;
+                button.dataset.index = index;
+                button.addEventListener('click', selectAnswer);
+                answersContainer.appendChild(button);
+            });
+            
+            // Start timer if needed
+            if (timePerQuestion > 0) {
+                timeLeft = timePerQuestion;
+                updateTimer();
+                timer = setInterval(updateTimer, 1000);
+            } else {
+                timerElement.textContent = 'Take your time';
+            }
+        }
+        
+        // Update timer display
+        function updateTimer() {
+            timerElement.textContent = `Time left: ${timeLeft}s`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                timerElement.textContent = "Time's up!";
+                handleTimeOut();
+                return;
+            }
+            
+            // Visual warnings
+            if (timeLeft <= 10) {
+                timerElement.classList.add('danger');
+            } else if (timeLeft <= timePerQuestion / 2) {
+                timerElement.classList.add('warning');
+            }
+            
+            timeLeft--;
+        }
+        
+        // Handle timeout
+        function handleTimeOut() {
+            // Disable all answer buttons
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            answerButtons.forEach(button => {
+                button.disabled = true;
+            });
+            
+            // Mark correct answer if in immediate feedback mode
+            if (feedbackMode === 'immediate') {
+                const correctIndex = quizData[currentQuestion].correct;
+                answerButtons[correctIndex].classList.add('correct');
+            }
+            
+            // Store user answer (null for timeout)
+            userAnswers.push({
+                question: quizData[currentQuestion].question,
+                userAnswer: null,
+                correctAnswer: quizData[currentQuestion].correct,
+                answers: [...quizData[currentQuestion].answers],
+                explanation: quizData[currentQuestion].explanation
+            });
+            
+            // Show next button or proceed automatically
+            if (feedbackMode === 'immediate') {
+                nextBtn.style.display = 'block';
+            } else {
+                setTimeout(() => {
+                    goToNextQuestion();
+                }, 1500);
+            }
+        }
+        
+        // Select answer
+        function selectAnswer(e) {
+            if (timePerQuestion > 0) {
+                clearInterval(timer);
+            }
+            
+            const selectedButton = e.target;
+            const selectedIndex = parseInt(selectedButton.dataset.index);
+            const correctIndex = quizData[currentQuestion].correct;
+            
+            // Disable all answer buttons
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            answerButtons.forEach(button => {
+                button.disabled = true;
+            });
+            
+            // Store user answer
+            userAnswers.push({
+                question: quizData[currentQuestion].question,
+                userAnswer: selectedIndex,
+                correctAnswer: correctIndex,
+                answers: [...quizData[currentQuestion].answers],
+                explanation: quizData[currentQuestion].explanation
+            });
+            
+            // Check if correct
+            const isCorrect = selectedIndex === correctIndex;
+            
+            if (isCorrect) {
+                score++;
+                selectedButton.classList.add('correct');
+            } else {
+                selectedButton.classList.add('incorrect');
+                if (feedbackMode === 'immediate') {
+                    answerButtons[correctIndex].classList.add('correct');
+                }
+            }
+            
+            // Show next button or proceed automatically
+            if (feedbackMode === 'immediate') {
+                nextBtn.style.display = 'block';
+            } else {
+                setTimeout(() => {
+                    goToNextQuestion();
+                }, isCorrect ? 1000 : 1500);
+            }
+        }
+        
+        // Next question
+        nextBtn.addEventListener('click', goToNextQuestion);
+        
+        function goToNextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+                timerElement.classList.remove('warning', 'danger');
+            } else {
+                showResults();
+            }
+        }
+        
+        // Show results
+        function showResults() {
+            quizContainer.style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            // Calculate score
+            const percentage = Math.round((score / quizData.length) * 100);
+            scoreValue.textContent = `${percentage}%`;
+            correctCount.textContent = score;
+            totalQuestions.textContent = quizData.length;
+            
+            // Set performance comment
+            if (percentage >= 90) {
+                performanceComment.textContent = "Excellent! You've demonstrated mastery of this physiology topic.";
+            } else if (percentage >= 75) {
+                performanceComment.textContent = "Very good! You have a strong understanding of most concepts.";
+            } else if (percentage >= 60) {
+                performanceComment.textContent = "Good effort! Review the explanations below to strengthen your knowledge.";
+            } else if (percentage >= 40) {
+                performanceComment.textContent = "Keep practicing! Focus on the explanations to improve your understanding.";
+            } else {
+                performanceComment.textContent = "Use this as a learning opportunity. Study the explanations carefully.";
+            }
+            
+            // Set score circle animation
+            scoreCircle.style.setProperty('--percentage', `${percentage}%`);
+            
+            // Show review section
+            reviewSection.innerHTML = `
+                <h3>Detailed Question Review</h3>
+                <p>Review all questions with your answers, correct solutions, and detailed explanations:</p>
+            `;
+            
+            userAnswers.forEach((item, index) => {
+                const isCorrect = item.userAnswer === item.correctAnswer;
+                const isUnanswered = item.userAnswer === null;
+                
+                const reviewItem = document.createElement('div');
+                reviewItem.classList.add('review-item');
+                if (isCorrect) reviewItem.classList.add('correct');
+                else if (isUnanswered) reviewItem.classList.add('unanswered');
+                else reviewItem.classList.add('incorrect');
+                
+                // User answer display
+                let userAnswerDisplay = '';
+                if (isUnanswered) {
+                    userAnswerDisplay = `
+                        <div class="user-answer unanswered">
+                            <strong>You didn't answer this question</strong> (time ran out)
+                        </div>
+                    `;
+                } else {
+                    userAnswerDisplay = `
+                        <div class="user-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                            <strong>Your answer:</strong> ${item.answers[item.userAnswer]}
+                            ${isCorrect ? ' (Correct)' : ' (Incorrect)'}
+                        </div>
+                    `;
+                }
+                
+                // Correct answer display (always show in review)
+                const correctAnswerDisplay = `
+                    <div class="correct-answer">
+                        <strong>Correct answer:</strong> ${item.answers[item.correctAnswer]}
+                    </div>
+                `;
+                
+                reviewItem.innerHTML = `
+                    <div class="review-question">${index + 1}. ${item.question}</div>
+                    ${userAnswerDisplay}
+                    ${correctAnswerDisplay}
+                    <div class="explanation">
+                        <strong>Explanation:</strong> ${item.explanation}
+                    </div>
+                `;
+                
+                reviewSection.appendChild(reviewItem);
+            });
+        }
+        
+        // Restart quiz
+        restartBtn.addEventListener('click', () => {
+            // Reset variables
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            
+            // Hide results, show quiz setup
+            resultsContainer.style.display = 'none';
+            quizSetup.style.display = 'block';
+        });
+        
+        // Back to portal
+        backBtn.addEventListener('click', () => {
+            // In a real implementation, this would link back to your portal page
+            alert("This would return to the main quiz portal page in a full implementation.");
+        });
+    </script>
+</body>
+</html>
