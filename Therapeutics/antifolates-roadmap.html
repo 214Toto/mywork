@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Pharmacology Roadmap</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            /* background-color: #fcf5f5; */
+            background: linear-gradient(135deg, #ffebee 0%, #e53935 100%);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        .logo h1 {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            background-color: #aa0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn i {
+            margin-right: 0.8rem;
+        }
+        h1 {
+            color: #b71c1c;
+            border-bottom: 2px solid #e53935;   
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .roadmap {
+            position: relative;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            /* add space for the vertical line */
+            padding-left: 40px;
+        }   
+
+        .roadmap::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            width: 4px;
+            height: calc(100% - 60px);
+            background: #e53935;
+            border-radius: 2px;
+            z-index: 0;
+        }
+        .topic {
+            position: relative;
+            margin: 30px 0;
+            cursor: pointer;
+            padding: 10px 10px 10px 30px;
+            border-radius: 5px;
+            background-color: #f8eaea;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .topic::before {
+        content: "";
+        position: absolute;
+        top: 24px;
+        left: -30px;
+        width: 30px;
+        height: 4px;
+        background: #e53935;
+        border-radius: 2px;
+        z-index: 1;
+    }
+    .topic:first-child {
+        margin-top: 0;
+    }
+    .topic:last-child {
+        margin-bottom: 0;
+    }
+        .topic:hover {
+            background-color: #f1d7d4;
+        }
+        .topic h2 {
+            color: #b71c1c;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topic h2::after {
+            content: "+";
+            font-size: 1.5em;
+        }
+        .topic.active h2::after {
+            content: "-";
+        }
+        .notes {
+            display: none;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-left: 4px solid #e53935;
+        }
+        .topic.active .notes {
+            display: block;
+        }
+        .drug-name {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+        .mechanism {
+            font-style: italic;
+            color: #27ae60;
+        }
+        .side-effects {
+            background-color: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .key-point {
+            background-color: #edd4d4;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .roadmap {
+                padding-left: 20px;
+            }
+            .roadmap::before {
+                left: 10px;
+                width: 2px;
+            }
+            .topic {
+                padding-left: 18px;
+            }
+            .topic::before {
+                left: -18px;
+                width: 18px;
+                height: 2px;
+            }
+            header .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            header .container > div:first-child {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logo {
+                justify-content: center;
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>ToToZ Collection</h1>
+            </div>
+            
+            <div>
+                <button onclick="window.location.href='index.html'" class="btn" style="margin-right: 1rem;">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <a href="index.html" class="btn">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </div>
+            
+        </div>
+    </header>
+    
+    <h1>Heart Failure Management - Interactive Roadmap</h1>
+    
+    <div class="roadmap">
+        <div class="topic">
+            <h2>1. Sulphonamides</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> </p>
+                <ol type="1">
+                    <li>Nalidixic acid</li>
+                    <li>Ciprofloxacin</li>
+                    <li>Norfloxacin</li>
+                    <li>Ofloxacin</li>
+                    <li>Levofloxacin</li>
+                    <li>Moxifloxacin</li>
+                </ol>
+
+                <p><span class="mechanism">Mechanism:</span> <br>
+                    <ul style="list-style-type: square; padding-left: 20px;">
+                        <li>Quinolones inhibit the two topoisomerases, DNA gyrase and topoisomerase IV.</li>
+                        <li>Generally, DNA gyrase is the target of quinolones in gram-negative bacteria, while topoisomerase IV is the primary target in gram-positive organisms.</il>
+                    </ul>
+                </p>
+
+                <p><strong>Indications:</strong></p>
+                <ul>
+                    <li><strong>Ciprofloxacin:</strong>
+                        <ul>
+                            <li>Effective against gram-negative bacteria like enteric gram-negative bacilli, gonococci, chlamydia, Pseudomonas aeruginosa. 
+                            <li>Used to treat infections like UTI, prostatitis, and PID.</li>
+                        </ul> 
+                    </li>
+
+                    <li><strong>Fluoroquinolones:</strong> 
+                        <ul>
+                            <li>Treat diarrhea infections caused by Campylobacter, Salmonella, Shigella, Yersinia enterocolitica</li>
+                            <li>Effective against traveler's diarrhea caused by enterotoxigenic E. coli</li>
+                            <li>Used with other drugs to treat intra-abdominal, bone, and skin infections</li>
+                            <li>Advanced respiratory fluoroquinolones like levofloxacin, moxifloxacin, gemifloxacin are effective against pneumococci and used in respiratory tract infections (sinusitis, bronchitis, H. influenzae, M. catarrhalis)</li>
+                            <li>Effective against community-acquired pneumonia</li>
+                            <li>Used in mycobacterial infections including intracellular and multidrug-resistant tuberculosis</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>Side Effects:</strong></p>
+                <ul>
+                    <li>Tendinitis and tendon rupture; avoid in children, adolescents, pregnant or nursing women</li>
+                    <li>Increased risk of tendon rupture in elderly (>60 years), corticosteroid users, and those with kidney/heart/lung transplants</li>
+                    <li>Prolongs QT interval (risk of arrhythmias)</li>
+                    <li>Blood sugar alterations (hypoglycemia or hyperglycemia)</li>
+                    <li>Seizures</li>
+                    <li>Phototoxicity (dermatitis after exposure)</li>
+                    <li>Inhibit cytochrome P450 1A2 (affects metabolism of drugs like caffeine, theophylline, etc.)</li>
+                </ul>
+                <div style="margin-top: 16px; background: #ffebee; border: 2px solid #e53935; border-radius: 8px; padding: 12px;">
+                    <label for="audio-notes">
+                        <i class="fas fa-volume-up" style="color: #e53935; margin-right: 6px;"></i>
+                        <strong style="color: #b71c1c;">Listen to Audio Notes:</strong>
+                    </label><br>
+                    <audio id="audio-notes" controls style="width: 100%;">
+                        <source src="audio/Hey Toto, do yo (1).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>2. Beta Blockers</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Carvedilol, Bisoprolol, Metoprolol succinate</p>
+                <p><span class="mechanism">Mechanism:</span> Block β1-adrenergic receptors → reduce sympathetic overactivity</p>
+                <div class="key-point">
+                    <strong>Important:</strong> Start at low dose and titrate slowly in stable patients
+                </div>
+                <p><strong>Key Points:</strong></p>
+                <ul>
+                    <li>Only use evidence-based beta blockers in HF</li>
+                    <li>May initially worsen symptoms before improvement</li>
+                    <li>Contraindicated in acute decompensated HF</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>3. Mineralocorticoid Receptor Antagonists</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Spironolactone, Eplerenone</p>
+                <p><span class="mechanism">Mechanism:</span> Block aldosterone effects → reduce sodium retention and fibrosis</p>
+                <div class="side-effects">
+                    <strong>Monitoring Required:</strong> Potassium levels (risk of hyperkalemia), renal function
+                </div>
+                <p><strong>Clinical Use:</strong></p>
+                <ul>
+                    <li>NYHA Class II-IV with reduced EF</li>
+                    <li>Post-MI with reduced EF and symptoms</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>4. ARNI (Sacubitril/Valsartan)</h2>
+            <div class="notes">
+                <p><span class="drug-name">Brand Name:</span> Entresto</p>
+                <p><span class="mechanism">Dual Mechanism:</span></p>
+                <ul>
+                    <li>Sacubitril: Inhibits neprilysin → ↑ natriuretic peptides</li>
+                    <li>Valsartan: ARB effects</li>
+                </ul>
+                <div class="key-point">
+                    <strong>PARADIGM-HF Trial:</strong> Showed superiority over enalapril in reducing CV death and HF hospitalization
+                </div>
+                <p><strong>Switching Protocol:</strong></p>
+                <ol>
+                    <li>Stop ACE inhibitor</li>
+                    <li>36-hour washout period</li>
+                    <li>Start ARNI at low dose</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>5. Diuretics</h2>
+            <div class="notes">
+                <p><span class="drug-name">Loop Diuretics:</span> Furosemide, Bumetanide, Torsemide</p>
+                <p><span class="drug-name">Thiazides:</span> Hydrochlorothiazide, Chlorthalidone (for mild HF)</p>
+                <p><strong>Clinical Use:</strong></p>
+                <ul>
+                    <li>Symptom relief (no mortality benefit)</li>
+                    <li>Adjust dose to maintain euvolemia</li>
+                    <li>Combine with salt restriction</li>
+                </ul>
+                <div class="side-effects">
+                    <strong>Adverse Effects:</strong> Electrolyte disturbances, dehydration, ototoxicity (loops), gout, photosensitivity (thiazides)
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>6. SGLT2 Inhibitors</h2>
+            <div class="notes">
+                <p><span class="drug-name">Examples:</span> Dapagliflozin, Empagliflozin</p>
+                <p><span class="mechanism">Mechanism:</span> Inhibit renal glucose reabsorption → osmotic diuresis, may improve myocardial metabolism</p>
+                <p><strong>Key Trials:</strong></p>
+                <ul>
+                    <li>DAPA-HF: Dapagliflozin in HFrEF</li>
+                    <li>EMPEROR-Reduced: Empagliflozin in HFrEF</li>
+                    <li>EMPEROR-Preserved: Empagliflozin in HFpEF</li>
+                </ul>
+                <div class="key-point">
+                    <strong>Advantage:</strong> Benefits seen regardless of diabetes status
+                </div>
+            </div>
+        </div>
+        
+        <div class="topic">
+            <h2>7. Additional Therapies</h2>
+            <div class="notes">
+                <p><span class="drug-name">Digoxin:</span> Symptom relief in sinus rhythm, no mortality benefit</p>
+                <p><span class="drug-name">Ivabradine:</span> For patients with HR >70 on max BB dose</p>
+                <p><span class="drug-name">Hydralazine/ISDN:</span> Especially beneficial in African Americans</p>
+                <p><strong>Device Therapy:</strong></p>
+                <ul>
+                    <li>ICD for primary/secondary prevention</li>
+                    <li>CRT for specific QRS patterns</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle the click events
+        document.querySelectorAll('.topic h2').forEach(header => {
+            header.addEventListener('click', function() {
+                const topic = this.parentElement;
+                topic.classList.toggle('active');
+                
+                // Close other open topics (optional)
+                document.querySelectorAll('.topic').forEach(otherTopic => {
+                    if (otherTopic !== topic && otherTopic.classList.contains('active')) {
+                        otherTopic.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
